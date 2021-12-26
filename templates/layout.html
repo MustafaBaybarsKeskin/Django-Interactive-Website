@@ -1,0 +1,167 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+-->
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>MID</title>
+
+    <script src="https://kit.fontawesome.com/5099e2e891.js" crossorigin="anonymous"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+  <br>
+ 
+   
+    {% include 'partials/_navbar.html' %}
+    
+
+    <div class = "container"> 
+                
+      {% if messages %}
+          
+              {% for message in messages %}
+              {% if message.tags == "info" %}
+              <div class="alert alert-danger">{{ message }}</div>
+              {% endif %}
+
+              {% endfor %}
+          {% endif %}
+
+
+      {% block body %}
+      
+      {% endblock body %}
+
+  </div>
+    
+
+    <main >
+      <div style="margin-top: 65px;">
+        <div style="margin-top: -15px; margin-bottom: 10px;">{% include 'partials/_alert.html' %}</div>
+          {% block content %}
+          {% endblock %}
+      </div>
+   </main>
+
+  {% include 'partials/_footer.html' %}
+   
+    <!--navbar script-->
+<script>
+    var prevScrollpos = window.pageYOffset;
+    window.onscroll = function() {
+    var currentScrollPos = window.pageYOffset;
+      if (prevScrollpos > currentScrollPos) {
+        document.getElementById("nav").style.top = "0";
+      } else {
+        document.getElementById("nav").style.top = "-60px";
+      }
+      prevScrollpos = currentScrollPos;
+    }
+</script>
+
+  <script>
+    $(function(){
+      $(".Z").hover(function(){
+        $(this).css("transform","scale(1.02)");
+      }, function(){
+        $(this).css("transform","scale(1)");
+      });
+    });
+</script>
+
+
+<script>
+    $(function(){
+      $(".Y").hover(function(){
+        $(this).css("transform","scale(1.05)");
+      }, function(){
+        $(this).css("transform","scale(1)");
+      });
+    });
+</script>
+
+<script>
+  $(function(){
+    $("h4").hover(function(){
+      $(this).css("color","red").css("text-decoration","underline").css("text-decoration-color","#DCDCDC");
+    }, function(){
+      $(this).css("color","black").css("text-decoration","none").css("text-decoration-color","none");
+    });
+  });
+</script>
+
+<script>
+  $(function(){​​​​​
+  $(".btn").hover(function(){​​​​​
+  $(this).animate({​​​​​'opacity':'0.75'}​​​​​,250);
+  }​​​​​, function(){​​​​​
+  $(this).animate({​​​​​'opacity':'1'}​​​​​,250);
+  }​​​​​);
+  }​​​​​);
+</script>
+
+<script>
+  $(".buyultbuton").click(function(){
+          var fontBuyukluguFloat = parseFloat($("#metin").css("font-size"));
+          var yeniFontBuyuklugu = fontBuyukluguFloat * 1.2;
+  
+          if(yeniFontBuyuklugu < 35)
+              $("#metin").css({"font-size" : yeniFontBuyuklugu});
+  });
+  </script>
+  
+  <script>
+  $(".kucultbuton").click(function(){
+          var fontBuyukluguFloat = parseFloat($("#metin").css("font-size"));
+          var yeniFontBuyuklugu = fontBuyukluguFloat * 0.9;
+  
+          if(yeniFontBuyuklugu > 10)
+              $("#metin").css({"font-size" : yeniFontBuyuklugu});
+  });
+  </script>
+  
+
+  <script>
+    $(function(){
+      $(".I").hover(function(){
+        $(this).css("transition","transform 0.3s").css("transform","scale(1.05)");
+      }, function(){
+        $(this).css("transform","scale(1)");
+      });
+    });
+  </script>
+
+  <script>
+    $(function(){
+      $(".C").hover(function(){
+        $(this).css("color","green");
+      }, function(){
+        $(this).css("color","rgba(0, 0, 0, 0.788)");
+      });
+    });
+  </script>
+
+<script>
+  $(function(){
+    $(".GTIT").click(function(){
+      $(".JUMBO").hide();
+  });              
+});        
+</script>
+  
+
+    <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+
+</body>
+</html>

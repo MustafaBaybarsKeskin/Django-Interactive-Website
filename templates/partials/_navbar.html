@@ -1,0 +1,117 @@
+{% load static %}
+<header id="nav" style="position: fixed; transition: 0.4s; top:0%; width: 100%;left: 0%; right: 0%; height: 0%; z-index: 3; ">
+    <div class="navbar navbar-expand-sm navbar-dark" style="background-color:rgb(212, 47, 56); ">
+        
+        <a class="navbar-brand ml-3" href="{% url 'homepage' %}"><img style="width: 64px;" src="{% static 'img/LOGO.png' %}" alt="Dispute Bills">
+        </a>
+        
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div id="navbarCollapse" class="collapse navbar-collapse">
+            <ul class="navbar-nav ">
+                <li 
+                    {% if request.path == '/' %}
+                    class="nav-item active ml-3"
+                    {% else  %}
+                    class="nav-item ml-3"
+                    {% endif %}
+                
+                >
+                    <a href="{% url 'homepage' %}" class="nav-link">Haber</a>
+                </li>
+                <li 
+                    {% if 'blog' in request.path %}
+                        class="nav-item active ml-3"
+                    {% else  %}
+                        class="nav-item ml-3"
+                    {% endif %}>
+                    
+                    <a href="{% url 'blogpage' %}" class="nav-link">Blog</a>
+                </li>
+                <li
+                {% if 'articles' in request.path %}
+                        class="nav-item active ml-3"
+                    {% else  %}
+                        class="nav-item ml-3"
+                     {% endif %}>
+                    
+
+               
+                    <a href="{% url 'article:articles' %}" class="nav-link">Forum</a>
+                </li>
+                <li {% if 'gundemler' in request.path %}
+                class="nav-item active ml-3"
+            {% else  %}
+                class="nav-item ml-3"
+             {% endif %}>
+                    <a href="{% url 'gundem:gundemler' %}" class="nav-link">Gündem</a>
+                </li>
+
+                <li 
+                    {% if 'hakkımızda' in request.path %}
+                        class="nav-item active ml-3"
+                    {% else  %}
+                        class="nav-item ml-3"
+                     {% endif %}>
+                    <a href="{% url 'hakkımızda' %}" class="nav-link">Hakkımızda</a>
+                </li>
+                
+                
+            </ul>
+    
+            <ul class="navbar-nav ml-auto mr-2">
+
+                {% if user.is_authenticated %}
+                    <li class="nav-item mr-4 ml-2 " >
+                        <div class="dropdown">
+                            <a class="navlink text-white dropdown-toggle " style="text-decoration:none;"  href="javascript:{document.getElementById('logout').submit()}" role="button" data-toggle="dropdown">
+                                <i class="far fa-user-circle mr-1"></i>{{ user.username }}
+                            </a>
+                        
+                            <div class="dropdown-menu">
+                                
+                                {% if request.user.is_superuser %}
+                                    <a class="nav-link dropdown-item" href="/admin" style="color: black;">Admin Paneli<i class="fas fa-cog ml-1"></i></a>
+                                {% endif %}
+                                    <a class="nav-link dropdown-item" href="{% url 'article:dashboard' %}" style="color: black;">Kontrol Paneli <i class="fas fa-tachometer-alt"></i></a>
+                                    <a href="javascript:{document.getElementById('logout').submit()}" class="nav-link dropdown-item" style="color: black;">Çıkış<i class="fas fa-sign-out-alt ml-1"></i></a>
+                                    <form action="{% url 'logout' %}" method="POST" id="logout">
+                                    {% csrf_token %}
+                                    <input type="hidden">
+                                </form></a>
+                            </div>
+                        </div>
+                    </li>  
+                {% else %}
+                    <li
+                        
+                        {% if 'login' in request.path %}
+                            class="nav-item active mr-2"
+                        {% else  %}
+                            class="nav-item mr-2 ml-2" 
+                        {% endif %}
+                    >
+                        <a href="{% url 'login' %}" class="nav-link"><i class="fas fa-sign-in-alt mr-2"></i>Giriş</a>
+                    </li>
+
+                    <li
+                    
+                        {% if 'register' in request.path %}
+                            class="nav-item active mr-2"
+                        {% else  %}
+                            class="nav-item mr-2"
+                        {% endif %}
+                    >
+                        <a href="{% url 'register' %}" class="nav-link"><i class="fas fa-user-plus mr-2"></i>Kayıt Ol</a>
+                    </li>
+
+                {% endif %}
+                
+            </ul>
+        
+        </div>
+
+    </div>
+</header>     

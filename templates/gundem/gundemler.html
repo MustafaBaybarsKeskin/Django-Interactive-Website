@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    
+
+<div class="" style="margin-left: 90px; margin-right: 90px; margin-top: -2px;">
+    <div class="row" style="height:600px">
+        <div class="col-md-2 border" style="height: 100%;">
+            
+            {% if gundemler %}
+
+                {% for gundem in gundemler %}
+                    <div class="GTIT ml-1 mt-2 active"><a class="C font-weight-bold text-decoration-none" id="gundemdetay" href="{% url 'gundem:detail' gundem.id %}" target="gundem_frame" style="color: rgba(0, 0, 0, 0.808); font-size:medium;">{{ gundem.title }}</a></div>
+
+
+                {% endfor %}
+    
+            {% endif %}
+        </div>
+
+
+        
+        <div class="col-md-10 border" style="width: 100%; height: 100%;">
+            <br>
+            <div class="JUMBO jumbotron">
+                {% if request.user.is_authenticated %}
+                <h1 class="display-4">Merhaba, {{request.user.username}}!</h1>
+                {% else %}
+                <h1 class="display-4">Merhaba!</h1>
+                {% endif %}
+                <p class="lead">Burada diğer kullanıcılarla gündem oluşturup bilgilerinizi diğer kullanıcılara aktarabilirsiniz!</p>
+            
+                <p class="lead">
+                  <a class="btn btn-success has-icon btn-lg"  href="/gundemler/gundemekle">Oluştur!</a>
+                </p>
+              </div>
+            <iframe class="mx-1 my-2" style="width: 100%; height: 97%;" src="" name="gundem_frame" frameborder="0"></iframe>
+        </div>
+        
+    </div>
+
+</div>
+
+
+{% endblock  %}
+    

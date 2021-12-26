@@ -1,0 +1,91 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-3" style="margin-bottom: 25%;">
+    <div><h3>Yazılım</h3></div> 
+    <div style="width: 70%;"><hr/></div>
+    <div class="row">
+
+        <div class="col-md-9">
+            {% if bpost %} 
+                {% for haber in bpost %}   
+                    {% if haber.category == 'yazılım' %}
+                    <div
+                        {% if haber.theme == 'kırmızı' %}
+                            class="card border-danger mb-3" style="width: 95%;  height: 160px;"
+                        {% elif haber.theme == 'mavi' %}
+                            class="card border-primary mb-3" style="width: 95%;  height: 160px;"
+                        {% elif haber.theme == 'yeşil' %}
+                            class="card border-success mb-3" style="width: 95%;  height: 160px;"
+                        {% elif haber.theme == 'sarı' %}
+                            class="card border-warning mb-3" style="width: 95%;  height: 160px;"
+                        {% elif haber.theme == 'mor' %}
+                            class="card mb-3" style="width: 95%;  height: 160px; border-color:rgb(150, 27, 199);"
+                        {% elif haber.theme == 'turuncu' %}
+                            class="card mb-3" style="width: 95%;  height: 160px; border-color: #ff7f00;"
+                        {% elif haber.theme == 'custom' %}
+                            class="card mb-3" style="width: 95%;  height: 160px; border-color: red blue green red;"
+                        {% else %}
+                            class="card mb-3" style="width: 95%;  height: 160px; border-color: #000000;"
+                        {% endif %}
+                        >
+
+                        <div class="card-body mx-auto mym-auto">
+                            <div class="float-left"  style="height: 100%; width: 30%;">
+                                <img src="{{ haber.image.url }}" class="" style="height: 100%; width: 100%;">
+                            </div>
+                            <div class="float-left pl-3" style="height: 100%; width: 70%;">
+                                <a href="{% url 'bdetail' haber.pk %}">
+                                    <h4 class="card-title" style="color: black;">{{haber.name}}</h4>
+                                </a>
+                                <p class="card-text">{{ haber.summary|safe}}</p>
+                                <p href="" class="text-muted float-bottom" style="font-size: 12px;">{{haber.writername}}</p>
+                            </div>
+                        </div>  
+                    </div>   
+                    {% endif %} 
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        
+        <div class="col-md-3 float-right">
+
+            <div class="row border pb-3" style="margin-top: 10px; height: 103px;">
+                <div class="mx-auto " style="width: 80%; ">
+                    <div class="font-weight-bold text-danger mx-auto w-100 mt-2"><p style="font-size: large;">Sosyal Medya Hesapları</p></div>
+                    <div class="mt-2" style="width: 80%; height: 60%; margin-top: -8%;">
+                        
+                        <div class="float-left mr-1" style="width: 22.5%; height: 95%;" ><a href="https://tr-tr.facebook.com/" title="Facebook'ta Takip Edin"> <img  src="{% static 'img/facebook.png' %}" style="width: 100%; height: 90%; border-radius: 10%;"> </a></div>
+                        <div class=" float-left mr-1" style="width: 22.5%; height: 95%;"><a href="https://www.instagram.com/?hl=tr" title="İnstagram'da Takip Edin"> <img src="{% static 'img/Twitter_Social_Icon_Square_Color.png' %}" style="width: 100%;height: 90%; border-radius: 10%;"> </a></div>
+                        <div class="float-left mr-1" style="width: 22.5%; height: 95%;"><a href="https://twitter.com/?lang=tr" title="Twitter'da Takip Edin"> <img src="{% static 'img/linkedin.png' %}" style="width: 100%; height: 90%; border-radius: 10%;"> </a></div>
+                        <div class="float-left mr-1" style="width: 22.5%; height: 95%;"><a href="https://www.youtube.com/" title="YouTube'ta Takip Edin"> <img src="{% static 'img/youtube1.png' %}" style="width: 100%; height: 90%; border-radius: 10%;"> </a></div>
+                       
+                    </div>
+                </div>
+            </div>
+
+            <div class="row border " style="margin-top: 70px;">
+                <div class="mx-auto mb-1" style="width: 80%; ">
+                    <div class="font-weight-bold text-danger mx-auto w-100 mt-2"><a href="" class="text text-danger"><p style="font-size: large;">İçerik Katogorileri</p></div></a>
+                    <div><a class="C" href="{% url 'gcategory' %}" style="text-decoration: none; color:rgba(0, 0, 0, 0.788); font-weight:bold;">#Genel</a> </div>
+                    <div><a class="C" href="{% url 'ycategory' %}" style="text-decoration: none; color:rgba(0, 0, 0, 0.788); font-weight:bold;">#Yazılım</a></div>
+                    <div><a class="C" href="{% url 'elcategory' %}" style="text-decoration: none; color:rgba(0, 0, 0, 0.788); font-weight:bold;;">#Elektronik</a></div>
+                    <div><a class="C" href="{% url 'egcategory' %}" style="text-decoration: none; color:rgba(0, 0, 0, 0.788); font-weight:bold;">#Eğlence</a></div>
+                </div>
+
+            </div>
+
+    
+        </div>
+
+
+
+
+    
+    </div>
+
+
+</div>
+{% endblock %}

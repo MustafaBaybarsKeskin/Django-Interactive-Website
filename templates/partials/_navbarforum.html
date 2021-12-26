@@ -1,0 +1,79 @@
+<nav class="navbar navbar fixed-top navbar-toggleable-md navbar-dark" style="background-color: rgb(212, 47, 56);">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="{% url 'homepage' %}">MID Forum</a>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'homepage' %}">Anasayfa <span class="sr-only">(current)</span></a>
+        </li>
+        {% if request.user.is_authenticated %}
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'article:dashboard' %}">Kontrol Paneli</a>
+      </li>
+      <li class="nav-item" >
+        <a href="javascript:{document.getElementById('logout').submit()}" class="nav-link">({{ user.username }}) Çıkış</a>
+        <form action="{% url 'logout' %}" method="POST" id="logout">
+            {% csrf_token %}
+            <input type="hidden">
+        </form>
+    </li>
+      {% else %}
+
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'login'  %}">Giriş Yap</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'register'  %}">Kayıt Ol</a>
+      </li>
+      {% endif %}
+      
+        
+      </ul>
+    </div>
+  </nav>
+
+
+<!-- <nav class="navbar navbar-toggleable-md navbar-default fixed-top bg-inverse">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="{% url 'homepage'  %}">MID Forum</a>
+    
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'homepage'  %}">Hakkımızda</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="{% url 'homepage'  %}">Konular</a>
+        </li>
+        
+      </ul>
+
+      <ul class="navbar-nav ml-auto">
+      {% if request.user.is_authenticated %}
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'homepage'  %}">Kontrol Paneli</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'homepage'  %}">Çıkış Yap</a>
+      </li>
+      {% else %}
+
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'login'  %}">Giriş Yap</a>
+      </li>
+      {% endif %}
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'register'  %}">Kayıt Ol</a>
+      </li>
+      
+      </ul>
+    </div>
+
+
+</nav>
+
+-->

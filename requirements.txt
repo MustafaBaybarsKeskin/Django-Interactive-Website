@@ -1,0 +1,5 @@
+django-ckeditor==6.2.0
+Pillow==8.1.0
+celery==5.0.5
+django_cleanup==5.1.0
+django-crispy-forms==1.10.0
